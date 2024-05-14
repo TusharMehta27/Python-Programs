@@ -1,0 +1,27 @@
+def count_letter_occurrences(filename):
+    try:
+        with open(filename, 'r') as file:
+            content = file.read()
+            letter_count = {}
+            for char in content:
+                if char.isalpha():
+                    char = char.lower()  # Convert to lowercase to treat uppercase and lowercase letters the same
+                    if char in letter_count:
+                        letter_count[char] += 1
+                    else:
+                        letter_count[char] = 1
+
+            # Print the letter occurrences
+            for letter, count in sorted(letter_count.items()):
+                print(f"Letter '{letter}' occurs {count} times.")
+    except FileNotFoundError:
+        print("File not found.")
+    except Exception as e:
+        print("An error occurred:", e)
+
+def main():
+    filename = input("Enter the filename: ")
+    count_letter_occurrences(filename)
+
+if __name__ == "__main__":
+    main()
